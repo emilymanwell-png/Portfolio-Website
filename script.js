@@ -19,8 +19,17 @@ function showPage(pageId, evt) {
     window.scrollTo(0, 0);
 }
 
+// Helper to run initialization code whether DOMContentLoaded already fired or not
+function runOnReady(fn) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fn);
+    } else {
+        fn();
+    }
+}
+
 // Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function () {
+runOnReady(function () {
     const mobile = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
     if (mobile && navLinks) {
@@ -29,3 +38,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+/* Avatar controls removed per user request. */

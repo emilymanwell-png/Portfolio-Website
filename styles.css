@@ -241,13 +241,44 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
 }
 
 /* Avatar image inside the profile circle */
-.profile-image img,
-.profile-avatar {
+.profile-image {
+    flex: 0 0 250px;
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
+}
+
+/* Alternative avatar rendering using background-image for precise positioning and zoom
+   Use on the element with class `background-avatar`. Controls:
+   --avatar-pos: <x%> <y%>
+   --avatar-bg-size: <percent> (e.g., 106% for slight zoom)
+*/
+.profile-image.background-avatar {
+    background-repeat: no-repeat;
+    /* Force the photo further to the right and slightly up; reduced zoom so sweater shows.
+       Hard-coded values with !important to override any inline variables. */
+    background-position: 96% 8% !important;
+    /* Increased zoom by 1.02x (was 102%) per user request */
+    background-size: 104.04% !important;
+}
+
+/* Avatar control panel (floating) for live nudging */
+/* Avatar control panel removed per user request */
+
+/* Avatar image inside the profile circle: fill container, use object-position, and allow scaling (zoom) via --avatar-scale */
+.profile-image img,
+.profile-avatar {
+    width: 100%;
+    height: 100%;
     display: block;
+    object-fit: cover;
+    /* Use CSS variable --avatar-pos to control focal point. Default centers slightly above center. */
+    object-position: var(--avatar-pos, 50% 30%);
+    /* Use CSS variable --avatar-scale to slightly zoom the image; default 1.2 (20% zoom) */
+    transform: scale(var(--avatar-scale, 1.2));
+    transform-origin: center center;
+    transition: transform 180ms ease, object-position 180ms ease;
     box-shadow: 0 6px 18px var(--shadow);
 }
 
@@ -489,6 +520,15 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     margin-bottom: 2rem;
 }
 
+
+/* Strong override to force avatar crop/position when inline styles are being overwritten elsewhere */
+.profile-image img.profile-avatar,
+.profile-image .profile-avatar {
+    /* Move image up and to the right and slightly zoom out so more sweater shows */
+    /* small additional nudge to the right */
+    object-position: 82% 14% !important;
+    transform: scale(1.06) !important;
+}
 .contact-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
