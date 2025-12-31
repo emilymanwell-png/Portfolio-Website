@@ -105,7 +105,7 @@
                         <span class="tag">Design</span>
                         <span class="tag">Collaboration</span>
                     </div>
-                    <div style="margin-top:1rem;"><a href="#" class="btn btn-primary">View Project</a></div>
+                    <div style="margin-top:1rem;"><a href="#" class="btn btn-primary" onclick="showPage('vip', event)">View Project</a></div>
                 </div>
             </div>
 
@@ -122,6 +122,23 @@
     </div>
 
     <!-- RESEARCH PAGE -->
+        <!-- VIP PROJECT PAGE (embedded slideshow) -->
+        <div id="vip" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>VIP Project — Sonifying Healthy and Unhealthy Eosinophil Glycocalyces</h1>
+                    <p>Presentation preview</p>
+                </div>
+                <div class="card">
+                    <p class="meta">Boise State Vertically Integrated Project | 2025</p>
+                    <div class="embed-container">
+                        <iframe src="https://docs.google.com/presentation/d/1Fw1a3VcwJAIZUdZMBKaDuhE8kdGuCYrp0tQfTRxqH8U/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>
+                    </div>
+                    <div style="margin-top:1rem;"><a href="#" class="btn btn-secondary" onclick="showPage('work', event)">Back to Work</a></div>
+                </div>
+            </div>
+        </div>
+
     <div id="research" class="page">
         <div class="container">
             <div class="page-header">
@@ -301,7 +318,9 @@
 
             <div class="cv-section">
                 <div class="cv-download">
-                    <a href="#" class="btn btn-primary">Download PDF Resume</a>
+                    <a href="file:///C:/Users/emily/Downloads/Resume.pdf" download class="btn btn-primary">Download PDF Resume</a>
+                    <!-- Additional button requested by user -->
+                    <a href="file:///C:/Users/emily/Downloads/CV.pdf" download class="btn btn-secondary" style="margin-left:0.6rem;">Download PDF CV</a>
                 </div>
 
                 <h2 class="section-title">Professional Experience</h2>
@@ -393,6 +412,17 @@
                             <div>
                                 <strong>Email</strong><br>
                                 emilymanwell@u.boisestate.edu
+                                <!-- Embed modal for project previews -->
+                                <div id="embed-modal" class="embed-modal" aria-hidden="true">
+                                    <div id="embed-backdrop" class="embed-modal-backdrop"></div>
+                                    <div class="embed-modal-content" role="dialog" aria-modal="true" aria-label="Project preview">
+                                        <button id="embed-close" class="embed-close" aria-label="Close">×</button>
+                                        <div class="embed-container">
+                                            <iframe id="embed-iframe" src="" frameborder="0" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </a>
 
