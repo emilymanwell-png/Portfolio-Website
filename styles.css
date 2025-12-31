@@ -240,6 +240,17 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     box-shadow: 0 6px 18px var(--shadow);
 }
 
+/* Avatar image inside the profile circle */
+.profile-image img,
+.profile-avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 6px 18px var(--shadow);
+}
+
 .bio {
     flex: 1;
     min-width: 300px;
