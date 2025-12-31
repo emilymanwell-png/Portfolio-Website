@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emily Manwell - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home', event)">Emily Manwell</a>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home', event)" class="active">Home</a></li>
+                <li><a onclick="showPage('about', event)">About</a></li>
+                <li><a onclick="showPage('work', event)">Work</a></li>
+                <li><a onclick="showPage('research', event)">Research</a></li>
+                <li><a onclick="showPage('music', event)">Music</a></li>
+                <li><a onclick="showPage('awards', event)">Awards</a></li>
+                <li><a onclick="showPage('cv', event)">CV/Resume</a></li>
+                <li><a onclick="showPage('contact', event)">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <h1>Emily Manwell</h1>
+            <p class="subtitle">Honors Student | Cellular and Molecular Biology</p>
+            <p>I’m a multidisciplinary scholar and creative professional bridging biological science, music, and research, driven by curiosity, rigor, and a commitment to meaningful impact. As a student, I pair academic excellence with originality—translating complex ideas into work that advances both scientific understanding and human expression.</p>
+            <div class="cta-buttons">
+                <a onclick="showPage('contact', event)" class="btn btn-primary">Get in Touch</a>
+                <a onclick="showPage('work', event)" class="btn btn-secondary">View My Work</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>About Me</h1>
+                <p>Get to know my background</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="profile-image">
+                    <div class="profile-placeholder">EM</div>
+                </div>
+                <div class="bio">
+                    <p>I’m a student and early-career professional with training in biological sciences and music, focused on interdisciplinary research and creative inquiry. My academic work is grounded in scientific rigor, while my musical background informs how I think about structure, pattern, and communication across complex systems.</p>
+                    <p>I’m especially drawn to projects that live between disciplines, where analytical precision meets thoughtful design and artistic intent. Whether working in research, creative production, or professional settings, I aim to translate complex ideas into work that is clear, engaging, and meaningful to diverse audiences.</p>
+                    <p>I’m motivated by curiosity, long-term impact, and continual growth, and I value environments that encourage depth, collaboration, and originality. I approach my work with intention and adaptability, bringing both discipline and creativity to every project I take on.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Education</h2>
+            <div class="card">
+                <h3>Bachelor of Science in Cellular and Molecular Biology</h3>
+                <p class="meta">Boise State University | Expected December 2027</p>
+                <p>My studies in biology focus on cellular and molecular systems, with an emphasis on understanding complex biological processes through rigorous scientific inquiry. I’m particularly interested in how biological data can be analyzed, interpreted, and communicated across research and interdisciplinary contexts.</p>
+            </div>
+
+            <h2 class="section-title">More</h2>
+            <div class="work-grid">
+                <div class="card">
+                    <h3>Bachelor of Arts in Music</h3>
+                    <p class="meta">Boise State University | Expected December 2027</p>
+                    <p>In music, I study performance, theory, and historical context, developing both technical proficiency and artistic interpretation. My training emphasizes disciplined practice, musical analysis, and expressive communication, informing how I approach structure, creativity, and collaboration in my work.</p>
+                </div>
+                <div class="card">
+                    <h3>Minor in Chemistry</h3>
+                    <p>My chemistry coursework provides a strong foundation in chemical principles, laboratory techniques, and quantitative reasoning. Through hands-on experimentation and analysis, I develop the skills necessary to understand and apply chemical concepts within biological and research-driven environments.</p>
+                </div>
+                <div class="card">
+                    <h3>Minor in Spanish</h3>
+                    <p>My Spanish studies center on advanced language proficiency, cultural literacy, and effective communication. I focus on developing fluency across academic, professional, and conversational contexts, with attention to cultural nuance and global perspectives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WORK PAGE -->
+    <div id="work" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Work</h1>
+                <p>Selected projects and professional experience</p>
+            </div>
+
+            <!-- Main featured project (large horizontal card) -->
+            <div class="work-feature card">
+                <div class="feature-media">
+                    <!-- Local image from Downloads. If viewing locally the browser will load this via file URL. -->
+                    <img src="file:///C:/Users/emily/Downloads/63365.jpg" alt="VIP project image">
+                </div>
+                <div class="feature-content">
+                    <h3>Sonifying Healthy and Unhealthy Eosinophil Glycocalyces</h3>
+                    <p class="meta">Boise State Vertically Integrated Project | 2025</p>
+                    <p>This VIP project explores the intersection of immunology, glycobiology, and music by transforming eosinophil glycocalyx data into structured musical compositions. The project focuses on mapping glycan features—such as monosaccharide composition, linkage type, branching, and modification patterns—onto musical parameters including melody, harmony, rhythm, timbre, and texture. By doing so, the work investigates whether disease-associated changes in eosinophils, particularly in Eosinophilic Esophagitis, produce distinct and perceptible musical signatures.<p>
+                    <p>Beyond its artistic dimension, this project serves as a novel framework for data interpretation and science communication. Musical representations may allow listeners to intuitively detect differences between healthy and diseased immune states, offering an alternative modality for understanding complex biological data. The long-term goal is to develop a reproducible, extensible sonification system that bridges molecular-scale biology with human perception, while also contributing to accessibility, interdisciplinary research, and creative scientific outreach.</p>
+                    <div class="tags">
+                        <span class="tag">Leadership</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">Design</span>
+                        <span class="tag">Collaboration</span>
+                    </div>
+                    <div style="margin-top:1rem;"><a href="#" class="btn btn-primary">View Project</a></div>
+                </div>
+            </div>
+
+            <!-- Tiles below the main feature. Add more tiles later. -->
+            <div class="work-tiles">
+                <div class="tile card">
+                    <h3>Sonifying Methylating Data Research Project</h3>
+                    <p class="meta">Boise State BIOL306 Communication in Biology | 2025</p>
+                    <p>This project explored how epigenetic data—specifically DNA methylation patterns—can be translated into music to reveal patterns that are difficult to perceive through traditional visual analysis alone. Drawing on primary research literature, I examined methods for encoding methylation states into binary data and mapping those sequences onto musical structures such as pitch, harmony, and rhythm. The project culminated in a written research paper and class presentation analyzing the scientific and communicative potential of biological data sonification. This work served as a conceptual and methodological foundation for my ongoing interdisciplinary research integrating immunology, glycobiology, and music.</p>
+                </div>
+                <!-- Additional tiles can be added here later: <div class="tile card">...</div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- RESEARCH PAGE -->
+    <div id="research" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Research</h1>
+                <p>Publications, papers, and research projects</p>
+            </div>
+
+            <div class="research-grid">
+                <div class="card">
+                    <h3>Sonifying Healthy and Unhealthy Eosinophil Glycocalyces</h3>
+                    <p class="meta">Boise State Vertically Integrated Project | 2025</p>
+                    <p>This interdisciplinary research project explores how eosinophil glycocalyx data can be transformed into music to reveal patterns associated with immune function and disease. By mapping glycan composition, structure, and modification features onto musical elements such as melody, harmony, and rhythm, the project investigates whether complex biological differences can be perceived through sound. The work bridges immunology, glycobiology, and music, while also emphasizing accessibility, creative data interpretation, and science communication.</p>
+                    <div class="tags">
+                        <span class="tag">Biology</span>
+                        <span class="tag">Data Sonification</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Sonifying Methylating Data Research Project</h3>
+                    <p class="meta">Boise State BIOL306 Communication in Biology | 2025</p>
+                    <p>This project examined how DNA methylation patterns can be translated into music to reveal epigenetic features that are difficult to detect through visual analysis alone. Through analysis of primary research literature, I explored methods for encoding methylation states into binary data and mapping them onto musical elements such as pitch, harmony, and rhythm. The project resulted in a written research paper and class presentation and provided a conceptual foundation for my ongoing interdisciplinary work integrating biology and music.</p>
+                    <div class="tags">
+                        <span class="tag">Biology</span>
+                        <span class="tag">Paper & Presentation</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Magnetotactic Bacteria Research Project</h3>
+                    <p class="meta">Boise State BIOL306 Communication in Biology | 2025</p>
+                    <p>As part of an upper-division biology course, I completed a research paper and class presentation on magnetotactic bacteria—microorganisms that synthesize intracellular magnetic structures called magnetosomes, allowing them to align with Earth’s magnetic field. The project focused on explaining how magnetosome chains form, how they enable magnetic navigation, and why this adaptation is advantageous in aquatic environments with oxygen gradients.</p>
+                    <div class="tags">
+                       <span class="tag">Biology</span>
+                        <span class="tag">Paper & Presentation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MUSIC PAGE -->
+    <div id="music" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Music</h1>
+                <p>Performances, compositions, and musical projects</p>
+            </div>
+
+            <div class="music-section">
+                <div class="music-item">
+                    <h3>Performance/Composition Title</h3>
+                    <p class="meta">Venue/Event | Date</p>
+                    <p>Description of the performance, composition, or musical project. Include details about the work and its reception.</p>
+                </div>
+                
+                <div class="music-item">
+                    <h3>Performance/Composition Title</h3>
+                    <p class="meta">Venue/Event | Date</p>
+                    <p>Description of the performance, composition, or musical project.</p>
+                </div>
+                
+                <div class="music-item">
+                    <h3>Album/Recording Title</h3>
+                    <p class="meta">Label/Platform | Year</p>
+                    <p>Information about recordings, albums, or other musical releases.</p>
+                </div>
+                
+                <div class="music-item">
+                    <h3>Musical Collaboration</h3>
+                    <p class="meta">Collaborators | Year</p>
+                    <p>Details about collaborative musical projects and ensembles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AWARDS PAGE -->
+    <div id="awards" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Awards & Recognition</h1>
+                <p>Honors and achievements throughout my career as a student</p>
+            </div>
+
+            <div class="awards-list">
+                <div class="award-item">
+                    <div class="award-year">2025</div>
+                    <div class="award-details">
+                        <h3>Award Name</h3>
+                        <p>Awarding organization and description of the recognition received.</p>
+                    </div>
+                </div>
+
+                <div class="award-item">
+                    <div class="award-year">2024</div>
+                    <div class="award-details">
+                        <h3>Award Name</h3>
+                        <p>Awarding organization and description of the recognition received.</p>
+                    </div>
+                </div>
+
+                <div class="award-item">
+                    <div class="award-year">2023</div>
+                    <div class="award-details">
+                        <h3>Award Name</h3>
+                        <p>Awarding organization and description of the recognition received.</p>
+                    </div>
+                </div>
+
+                <div class="award-item">
+                    <div class="award-year">2022</div>
+                    <div class="award-details">
+                        <h3>Award Name</h3>
+                        <p>Awarding organization and description of the recognition received.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CV PAGE -->
+    <div id="cv" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Curriculum Vitae</h1>
+                <p>Complete professional history and qualifications</p>
+            </div>
+
+            <div class="cv-section">
+                <div class="cv-download">
+                    <a href="#" class="btn btn-primary">Download PDF Resume</a>
+                </div>
+
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="timeline-item">
+                    <h3>Job Title</h3>
+                    <p class="date">Company Name | Month Year - Present</p>
+                    <p>Description of your role, responsibilities, and key achievements in this position.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Previous Job Title</h3>
+                    <p class="date">Company Name | Month Year - Month Year</p>
+                    <p>Description of your role, responsibilities, and key achievements in this position.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Earlier Position</h3>
+                    <p class="date">Company Name | Month Year - Month Year</p>
+                    <p>Description of your role, responsibilities, and key achievements.</p>
+                </div>
+
+                <h2 class="section-title">Education</h2>
+                <div class="timeline-item">
+                    <h3>Degree Name</h3>
+                    <p class="date">University Name | Year - Year</p>
+                    <p>Details about your degree, major, honors, and relevant coursework.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Previous Degree</h3>
+                    <p class="date">Institution Name | Year - Year</p>
+                    <p>Details about your degree and achievements.</p>
+                </div>
+
+                <h2 class="section-title">Skills & Competencies</h2>
+                <div class="work-grid">
+                    <div class="card">
+                        <h3>Technical Skills</h3>
+                        <p>List your technical skills, tools, and technologies you're proficient in.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Languages</h3>
+                        <p>Languages you speak and your proficiency level in each.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Certifications</h3>
+                        <p>Professional certifications and credentials you hold.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Get In Touch</h1>
+                <p>I'd love to hear from you</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-intro">
+                        Whether you're interested in collaboration, have questions about my work, or just want to connect, feel free to reach out through any of the channels below.
+                    </p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:emilymanwell@u.boisestate.edu" class="contact-link">
+                            <span class="icon">📧</span>
+                            <div>
+                                <strong>Email</strong><br>
+                                emilymanwell@u.boisestate.edu
+                            </div>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/emily-manwell-8018963a3" class="contact-link" target="_blank">
+                            <span class="icon">💼</span>
+                            <div>
+                                <strong>LinkedIn</strong><br>
+                                /in/emily-manwell-8018963a3
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/emilymanwell-png" class="contact-link" target="_blank">
+                            <span class="icon">💻</span>
+                            <div>
+                                <strong>GitHub</strong><br>
+                                /emilymanwell-png
+                            </div>
+                        </a>
+
+                        <a href="tel:+1234567890" class="contact-link">
+                            <span class="icon">📱</span>
+                            <div>
+                                <strong>Phone</strong><br>
+                                (123) 456-7890
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Emily Manwell |  emilymanwell@u.boisestate.edu</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
