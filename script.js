@@ -86,4 +86,62 @@ runOnReady(function () {
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeEmbed(); });
 });
 
+/* Expandable card modal functionality */
+function openExpandableModal(cardElement) {
+    // Prevent event bubbling
+    event.stopPropagation();
+    
+    // Create modal if it doesn't exist
+    let modalContainer = document.getElementById('expandable-modal-container');
+    if (!modalContainer) {
+        modalContainer = document.createElement('div');
+        modalContainer.id = 'expandable-modal-container';
+        modalContainer.className = 'expandable-modal';
+        modalContainer.innerHTML = '<div class="expandable-modal-content"><button class="expandable-modal-close" onclick="closeExpandableModal()">&times;</button><div id="expandable-modal-body"></div></div>';
+        document.body.appendChild(modalContainer);
+    }
+    
+    // Clone card content into modal
+    const cardContent = cardElement.cloneNode(true);
+    cardContent.classList.remove('expandable-card', 'methylation-card');
+    cardContent.style.width = 'auto';
+    cardContent.style.height = 'auto';
+    cardContent.querySelectorAll('p').forEach(p => {
+        p.style.display = 'block';
+        p.style.webkitLineClamp = 'unset';
+    });
+    cardContent.querySelector('.expand-overlay')?.remove();
+    
+    document.getElementById('expandable-modal-body').innerHTML = '';
+    document.getElementById('expandable-modal-body').appendChild(cardContent);
+    
+    // Open modal
+    modalContainer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeExpandableModal() {
+    const modal = document.getElementById('expandable-modal-container');
+    if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal when clicking backdrop
+runOnReady(function () {
+    document.addEventListener('click', function (e) {
+        if (e.target.id === 'expandable-modal-container') {
+            closeExpandableModal();
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeExpandableModal();
+        }
+    });
+});
+
 /* Avatar controls removed per user request. */

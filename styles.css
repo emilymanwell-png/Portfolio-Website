@@ -421,6 +421,174 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     box-shadow: 0 8px 24px rgba(15,23,42,0.04);
 }
 
+/* Prevent movement on education and more section cards */
+#about .card:hover {
+    transform: none;
+}
+
+/* Prevent movement on featured work card */
+.work-feature.card:hover {
+    transform: none;
+}
+
+/* Expandable card styles */
+.expandable-card {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 450px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.expandable-card p {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.expandable-card .expand-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent, var(--card-bg));
+    padding: 1.5rem 2rem 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+    transition: all 0.3s ease;
+}
+
+.expandable-card .expand-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent, var(--card-bg));
+    padding: 1.5rem 2rem 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+    transition: all 0.3s ease;
+}
+
+.expandable-card:hover .expand-overlay {
+    background: linear-gradient(to bottom, transparent, var(--accent-2));
+    color: var(--text);
+}
+/* Art portfolio specific styling */
+#art .expandable-card {
+    height: 480px;
+}
+
+#art .expandable-card .gallery-image {
+    flex: 1;
+    min-height: 290px;
+}
+
+#art .expandable-card h3 {
+    margin: 0.8rem 0 0.3rem 0;
+    font-size: 1.1rem;
+}
+
+#art .expandable-card .meta {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+#art .expandable-card p {
+    -webkit-line-clamp: 4;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Work and research specific styling */
+#work .expandable-card,
+#research .expandable-card {
+    height: auto;
+    min-height: 280px;
+}
+
+#work .expandable-card p,
+#research .expandable-card p {
+    -webkit-line-clamp: 2;
+    font-size: 0.9rem;
+}
+
+#work .expandable-card p {
+    -webkit-line-clamp: 4;
+}
+
+#work .expandable-card h3,
+#research .expandable-card h3 {
+    margin: 0.8rem 0 0.3rem 0;
+    font-size: 1.1rem;
+}
+
+#work .expandable-card .meta,
+#research .expandable-card .meta {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+/* Modal styles */
+.expandable-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.expandable-modal.open {
+    display: flex;
+}
+
+.expandable-modal-content {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.expandable-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text);
+    transition: color 0.3s ease;
+}
+
+.expandable-modal-close:hover {
+    color: var(--accent);
+}
+
+/* Ensure gallery images display properly in modal */
+.expandable-modal-content .gallery-image {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
 .card h3 {
     color: var(--text);
     margin-bottom: 0.5rem;
