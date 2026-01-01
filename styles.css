@@ -648,3 +648,101 @@ footer {
         margin: 0 auto;
     }
 }
+
+/* Gallery Grid for Art and Modeling Pages */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.gallery-item {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(43, 38, 33, 0.1);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 240px;
+    background-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item h3 {
+    padding: 1.5rem 1.5rem 0.5rem;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.gallery-item .meta {
+    display: block;
+    padding: 0 1.5rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.gallery-item p {
+    padding: 0.5rem 1.5rem 1.5rem;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Timeline for Conferences Page */
+.timeline {
+    margin: 2rem 0;
+}
+
+.timeline-item {
+    background: var(--card-bg);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.timeline-item h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.timeline-item .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.timeline-item p {
+    margin: 0;
+    color: var(--text);
+}
+
+/* Page Container */
+.page-container {
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+/* Intro text for new pages */
+.art-intro,
+.conferences-intro,
+.modeling-intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin: 2rem 0 3rem;
+    max-width: 900px;
+}
