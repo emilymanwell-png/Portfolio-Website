@@ -483,11 +483,14 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
 /* Art portfolio specific styling */
 #art .expandable-card {
     height: 480px;
+    display: flex;
+    flex-direction: column;
 }
 
 #art .expandable-card .gallery-image {
-    flex: 1;
-    min-height: 290px;
+    height: 290px;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 #art .expandable-card h3 {
