@@ -1,0 +1,1 @@
+ & "C:\Users\emily\Downloads\ffmpeg-master-latest-win64-gpl-shared (1)\ffmpeg-master-latest-win64-gpl-shared\bin\ffmpeg.exe" -i "C:\Users\emily\Documents\Professional Website\Emily_Manwell_Website\assets\widor-suite-mvt4.mp4" -ss 00:06:02 -frames:v 1 -q:v 2 "C:\Users\emily\Documents\Professional Website\Emily_Manwell_Website\assets\widor-suite-mvt4-6m02.jpg"
