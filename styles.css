@@ -634,6 +634,55 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
+/* Highlights reel section */
+.highlights-section {
+    margin-bottom: 3rem;
+}
+
+.highlights-reel {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.highlights-video {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
+    max-width: 800px;
+    width: 100%;
+}
+
+.highlights-video:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(15,23,42,0.15);
+}
+
+.highlights-video video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.highlights-video h3 {
+    padding: 1.5rem 2rem 0.5rem;
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.highlights-video .meta {
+    padding: 0 2rem 1.5rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
 /* Music video grid */
 .music-grid {
     display: grid;
@@ -881,6 +930,26 @@ footer {
 
     .profile-image {
         margin: 0 auto;
+    }
+
+    /* Highlights reel responsive styles */
+    .highlights-video {
+        margin: 0 1rem;
+    }
+
+    .highlights-video h3 {
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem 0.5rem;
+    }
+
+    .highlights-video .meta {
+        padding: 0 1.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .music-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
 
