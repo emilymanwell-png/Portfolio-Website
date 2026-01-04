@@ -743,7 +743,7 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
 }
 
 .highlights-video .video-embed::before {
-    background-image: url('assets/performance-highlights-cover.png');
+    background-image: url('./assets/performance-highlights-cover.png');
     border-radius: 12px;
 }
 
@@ -758,15 +758,15 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
 
 /* Specific cover images for each music video */
 .music-video-item:nth-child(1) .video-embed::before {
-    background-image: url('assets/widor-suite-mvt4-6m02_warm_crisp.jpg');
+    background-image: url('./assets/widor-suite-mvt4-6m02_warm_crisp.jpg');
 }
 
 .music-video-item:nth-child(2) .video-embed::before {
-    background-image: url('assets/ibert-cover.png');
+    background-image: url('./assets/ibert-cover.png');
 }
 
 .music-video-item:nth-child(3) .video-embed::before {
-    background-image: url('assets/enesco-cover.png');
+    background-image: url('./assets/enesco-cover.png');
 }
 
 /* Highlights video styles */
