@@ -762,11 +762,11 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
 }
 
 .music-video-item:nth-child(2) .video-embed::before {
-    background-image: url('file:///C:/Users/emily/OneDrive/Pictures/Screenshots/Screenshot 2026-01-03 000914.png');
+    background-image: url('assets/ibert-cover.png');
 }
 
 .music-video-item:nth-child(3) .video-embed::before {
-    background-image: url('file:///C:/Users/emily/OneDrive/Pictures/Screenshots/Screenshot 2026-01-03 000512.png');
+    background-image: url('assets/enesco-cover.png');
 }
 
 /* Highlights video styles */
