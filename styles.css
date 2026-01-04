@@ -660,7 +660,7 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     box-shadow: 0 12px 32px rgba(15,23,42,0.15);
 }
 
-/* Video embed styles */
+/* Video embed styles with cover images */
 .video-embed {
     position: relative;
     width: 100%;
@@ -668,6 +668,7 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     overflow: hidden;
     border-radius: 8px;
+    background: #000;
 }
 
 .video-embed iframe {
@@ -677,9 +678,53 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     width: 100%;
     height: 100%;
     border-radius: 8px;
+    border: none;
+    object-fit: cover;
 }
 
-/* Highlights video specific */
+/* Cover image overlays */
+.video-embed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.video-embed:hover::before {
+    opacity: 0.8;
+}
+
+/* Play button overlay */
+.video-embed::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    z-index: 2;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.video-embed:hover::after {
+    opacity: 1;
+    font-size: 3.5rem;
+}
+
+/* Highlights video specific styling */
 .highlights-video .video-embed {
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     border-radius: 12px;
@@ -689,9 +734,31 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     border-radius: 12px;
 }
 
-/* Music video grid items */
+.highlights-video .video-embed::before {
+    background-image: url('assets/performance-highlights-cover.png');
+    border-radius: 12px;
+}
+
+.highlights-video .video-embed::after {
+    font-size: 4rem;
+}
+
+/* Music video grid items - square aspect ratio */
 .music-video-item .video-embed {
     padding-bottom: 100%; /* 1:1 aspect ratio for grid items */
+}
+
+/* Specific cover images for each music video */
+.music-video-item:nth-child(1) .video-embed::before {
+    background-image: url('assets/widor-suite-mvt4-6m02_warm_crisp.jpg');
+}
+
+.music-video-item:nth-child(2) .video-embed::before {
+    background-image: url('assets/piece-ibert-cover.jpg');
+}
+
+.music-video-item:nth-child(3) .video-embed::before {
+    background-image: url('assets/cantabile-et-presto-cover.jpg');
 }
 
 /* Highlights video styles */
