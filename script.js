@@ -145,3 +145,25 @@ runOnReady(function () {
 });
 
 /* Avatar controls removed per user request. */
+
+// Video embed interaction to hide cover images
+runOnReady(function () {
+    const videoEmbeds = document.querySelectorAll('.video-embed');
+    
+    videoEmbeds.forEach(embed => {
+        embed.addEventListener('click', function() {
+            this.classList.add('playing');
+        });
+        
+        // Also hide on any iframe interaction
+        const iframe = embed.querySelector('iframe');
+        if (iframe) {
+            iframe.addEventListener('load', function() {
+                // Listen for any interaction with the iframe
+                iframe.addEventListener('click', function() {
+                    embed.classList.add('playing');
+                });
+            });
+        }
+    });
+});
