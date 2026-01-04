@@ -145,32 +145,3 @@ runOnReady(function () {
 });
 
 /* Avatar controls removed per user request. */
-
-// Video embed interaction for cover images
-runOnReady(function () {
-    const videoEmbeds = document.querySelectorAll('.video-embed');
-    
-    // Add CSS for clicked state
-    const style = document.createElement('style');
-    style.textContent = `
-        .video-embed.clicked::before {
-            opacity: 0 !important;
-            transition: opacity 0.3s ease;
-        }
-        .video-embed.clicked::after {
-            opacity: 0 !important;
-            transition: opacity 0.3s ease;
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Handle clicks on video embeds
-    videoEmbeds.forEach(embed => {
-        embed.addEventListener('click', function(e) {
-            // Only add clicked class if we're clicking the overlay, not the iframe itself
-            if (!e.target.tagName || e.target.tagName !== 'IFRAME') {
-                this.classList.add('clicked');
-            }
-        });
-    });
-});

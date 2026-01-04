@@ -697,10 +697,11 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     border-radius: 8px;
     transition: opacity 0.3s ease;
     cursor: pointer;
+    pointer-events: none; /* Allow clicks to pass through to iframe */
 }
 
 .video-embed:hover::before {
-    opacity: 0.8;
+    opacity: 0.3;
 }
 
 /* Play button overlay */
@@ -714,14 +715,14 @@ body, .nav-links a, .btn, p, .bio p, .card p, .contact-intro {
     color: white;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     z-index: 2;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Allow clicks to pass through */
     opacity: 0.9;
 }
 
 .video-embed:hover::after {
-    opacity: 1;
-    font-size: 3.5rem;
+    opacity: 0.3;
+    font-size: 2rem;
 }
 
 /* Highlights video specific styling */
