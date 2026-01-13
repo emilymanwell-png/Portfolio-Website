@@ -8,8 +8,8 @@
 (function() {
     'use strict';
     
-    // Configuration - UPDATE THIS to your analytics server URL
-    const ANALYTICS_SERVER = 'http://localhost:3001'; // Change for production
+    // Configuration - Your deployed analytics server URL
+    const ANALYTICS_SERVER = 'https://analytics-for-portfolio-website-production.up.railway.app';
     
     // Get or create visitor ID
     function getVisitorId() {
