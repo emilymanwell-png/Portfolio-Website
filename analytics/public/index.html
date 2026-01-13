@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Emily Manwell Portfolio</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        
+        /* Login Screen */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .login-box {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .login-subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-hover);
+            color: var(--text);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+        
+        .error-msg {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            display: none;
+        }
+        
+        /* Dashboard */
+        .dashboard {
+            display: none;
+        }
+        
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-subtext {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .tab-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Sections */
+        .section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            padding: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table th {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+            background: var(--bg-dark);
+            position: sticky;
+            top: 0;
+        }
+        
+        .data-table tr:hover {
+            background: var(--bg-hover);
+        }
+        
+        .data-table td {
+            font-size: 0.875rem;
+        }
+        
+        /* Chart */
+        .chart-container {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            padding: 1rem 0;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            border-radius: 4px 4px 0 0;
+            min-height: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .chart-bar:hover {
+            opacity: 0.8;
+        }
+        
+        .chart-bar:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-dark);
+            color: var(--text);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            z-index: 10;
+            border: 1px solid var(--border);
+        }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .badge-primary {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+        
+        .badge-success {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+        
+        /* Breakdown bars */
+        .breakdown-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .breakdown-label {
+            min-width: 100px;
+            font-size: 0.875rem;
+        }
+        
+        .breakdown-bar-container {
+            flex: 1;
+            height: 8px;
+            background: var(--bg-dark);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .breakdown-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .breakdown-value {
+            min-width: 60px;
+            text-align: right;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        /* No data */
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+        
+        .no-data-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-content {
+                padding: 1rem;
+                overflow-x: auto;
+            }
+            
+            .data-table {
+                min-width: 600px;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <h1 class="login-title">🔐 Admin Dashboard</h1>
+            <p class="login-subtitle">Emily Manwell Portfolio Analytics</p>
+            
+            <div id="loginError" class="error-msg"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="passwordInput" class="form-input" placeholder="Enter your admin password" required autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Access Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-title">
+                    📊 Portfolio Analytics
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="refreshData()">
+                        🔄 Refresh
+                    </button>
+                    <button class="btn btn-secondary" onclick="logout()">
+                        🚪 Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Page Views</div>
+                    <div class="stat-value" id="totalViews">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Unique Visitors</div>
+                    <div class="stat-value" id="totalVisitors">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Today</div>
+                    <div class="stat-value" id="todayViews">-</div>
+                    <div class="stat-subtext"><span id="todayVisitors">-</span> unique visitors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">This Week</div>
+                    <div class="stat-value" id="weekViews">-</div>
+                    <div class="stat-subtext"><span id="weekVisitors">-</span> unique visitors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">This Month</div>
+                    <div class="stat-value" id="thisMonthViews">-</div>
+                    <div class="stat-subtext"><span id="thisMonthVisitors">-</span> unique visitors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">This Year</div>
+                    <div class="stat-value" id="thisYearViews">-</div>
+                    <div class="stat-subtext"><span id="thisYearVisitors">-</span> unique visitors</div>
+                </div>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="overview">📈 Overview</button>
+                <button class="tab-btn" data-tab="pages">📄 Pages</button>
+                <button class="tab-btn" data-tab="visitors">👥 Visitors</button>
+                <button class="tab-btn" data-tab="sources">🔗 Sources</button>
+                <button class="tab-btn" data-tab="devices">💻 Devices</button>
+                <button class="tab-btn" data-tab="activity">⏱️ Live Activity</button>
+            </div>
+            
+            <!-- Overview Tab -->
+            <div id="overviewTab" class="tab-content active">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Daily Views (Last 30 Days)</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="chart-container" id="dailyChart">
+                            <div class="loading"><div class="spinner"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Top Pages</h2>
+                    </div>
+                    <div class="section-content">
+                        <table class="data-table" id="topPagesTable">
+                            <thead>
+                                <tr>
+                                    <th>Page</th>
+                                    <th>Views</th>
+                                    <th>Unique Visitors</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pages Tab -->
+            <div id="pagesTab" class="tab-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">All Pages</h2>
+                    </div>
+                    <div class="section-content">
+                        <table class="data-table" id="allPagesTable">
+                            <thead>
+                                <tr>
+                                    <th>Page</th>
+                                    <th>Views</th>
+                                    <th>Unique Visitors</th>
+                                    <th>% of Total</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visitors Tab -->
+            <div id="visitorsTab" class="tab-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Recent Visitors</h2>
+                    </div>
+                    <div class="section-content">
+                        <table class="data-table" id="visitorsTable">
+                            <thead>
+                                <tr>
+                                    <th>Visitor</th>
+                                    <th>First Seen</th>
+                                    <th>Last Seen</th>
+                                    <th>Total Visits</th>
+                                    <th>Device</th>
+                                    <th>Browser</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sources Tab -->
+            <div id="sourcesTab" class="tab-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Traffic Sources</h2>
+                    </div>
+                    <div class="section-content">
+                        <div id="sourcesBreakdown"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Devices Tab -->
+            <div id="devicesTab" class="tab-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Device Types</h2>
+                    </div>
+                    <div class="section-content">
+                        <div id="devicesBreakdown"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Browsers</h2>
+                    </div>
+                    <div class="section-content">
+                        <div id="browsersBreakdown"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Operating Systems</h2>
+                    </div>
+                    <div class="section-content">
+                        <div id="osBreakdown"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Activity Tab -->
+            <div id="activityTab" class="tab-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Recent Page Views</h2>
+                    </div>
+                    <div class="section-content">
+                        <table class="data-table" id="activityTable">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Page</th>
+                                    <th>Device</th>
+                                    <th>Browser</th>
+                                    <th>Referrer</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // ============ AUTH ============
+        async function checkAuth() {
+            try {
+                const res = await fetch('/api/auth/check');
+                const data = await res.json();
+                
+                if (data.authenticated) {
+                    showDashboard();
+                    loadAllData();
+                } else {
+                    showLogin();
+                }
+            } catch (error) {
+                showLogin();
+            }
+        }
+        
+        function showLogin() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+        
+        function showDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+                
+                if (res.ok) {
+                    showDashboard();
+                    loadAllData();
+                } else {
+                    errorDiv.textContent = 'Invalid password. Please try again.';
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Connection error. Please try again.';
+                errorDiv.style.display = 'block';
+            }
+        });
+        
+        async function logout() {
+            await fetch('/api/auth/logout', { method: 'POST' });
+            showLogin();
+        }
+        
+        // ============ DATA LOADING ============
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/admin/stats');
+                const data = await res.json();
+                
+                document.getElementById('totalViews').textContent = data.totalPageViews.toLocaleString();
+                document.getElementById('totalVisitors').textContent = data.totalVisitors.toLocaleString();
+                document.getElementById('todayViews').textContent = data.todayViews.toLocaleString();
+                document.getElementById('todayVisitors').textContent = data.todayVisitors.toLocaleString();
+                document.getElementById('weekViews').textContent = data.weekViews.toLocaleString();
+                document.getElementById('weekVisitors').textContent = data.weekVisitors.toLocaleString();
+                document.getElementById('thisMonthViews').textContent = data.thisMonthViews.toLocaleString();
+                document.getElementById('thisMonthVisitors').textContent = data.thisMonthVisitors.toLocaleString();
+                document.getElementById('thisYearViews').textContent = data.thisYearViews.toLocaleString();
+                document.getElementById('thisYearVisitors').textContent = data.thisYearVisitors.toLocaleString();
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+        
+        async function loadDailyChart() {
+            try {
+                const res = await fetch('/api/admin/daily');
+                const data = await res.json();
+                
+                const container = document.getElementById('dailyChart');
+                
+                if (!data.daily || data.daily.length === 0) {
+                    container.innerHTML = '<div class="no-data"><div class="no-data-icon">📊</div>No data yet</div>';
+                    return;
+                }
+                
+                const maxViews = Math.max(...data.daily.map(d => d.views), 1);
+                container.innerHTML = data.daily.map(day => {
+                    const height = (day.views / maxViews) * 100;
+                    const date = new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    return `<div class="chart-bar" style="height: ${Math.max(height, 2)}%" data-tooltip="${date}: ${day.views} views, ${day.visitors} visitors"></div>`;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading daily chart:', error);
+            }
+        }
+        
+        async function loadPages() {
+            try {
+                const res = await fetch('/api/admin/pages');
+                const data = await res.json();
+                
+                const totalViews = data.pages.reduce((sum, p) => sum + p.views, 0) || 1;
+                
+                // Top pages (overview)
+                const topPagesBody = document.querySelector('#topPagesTable tbody');
+                if (data.pages.length === 0) {
+                    topPagesBody.innerHTML = '<tr><td colspan="3" class="no-data">No page views yet</td></tr>';
+                } else {
+                    topPagesBody.innerHTML = data.pages.slice(0, 5).map(p => `
+                        <tr>
+                            <td><strong>${escapeHtml(p.page)}</strong></td>
+                            <td>${p.views.toLocaleString()}</td>
+                            <td>${p.uniqueVisitors.toLocaleString()}</td>
+                        </tr>
+                    `).join('');
+                }
+                
+                // All pages
+                const allPagesBody = document.querySelector('#allPagesTable tbody');
+                if (data.pages.length === 0) {
+                    allPagesBody.innerHTML = '<tr><td colspan="4" class="no-data">No page views yet</td></tr>';
+                } else {
+                    allPagesBody.innerHTML = data.pages.map(p => `
+                        <tr>
+                            <td><strong>${escapeHtml(p.page)}</strong></td>
+                            <td>${p.views.toLocaleString()}</td>
+                            <td>${p.uniqueVisitors.toLocaleString()}</td>
+                            <td>${((p.views / totalViews) * 100).toFixed(1)}%</td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading pages:', error);
+            }
+        }
+        
+        async function loadVisitors() {
+            try {
+                const res = await fetch('/api/admin/visitors');
+                const data = await res.json();
+                
+                const tbody = document.querySelector('#visitorsTable tbody');
+                if (!data.visitors || data.visitors.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="no-data">No visitors yet</td></tr>';
+                    return;
+                }
+                
+                tbody.innerHTML = data.visitors.map(v => `
+                    <tr>
+                        <td><code style="font-size: 0.75rem;">${v.visitorId.substring(0, 12)}...</code></td>
+                        <td>${formatDateTime(v.firstSeen)}</td>
+                        <td>${formatDateTime(v.lastSeen)}</td>
+                        <td><strong>${v.totalVisits}</strong></td>
+                        <td><span class="badge badge-primary">${v.device}</span></td>
+                        <td>${v.browser}</td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading visitors:', error);
+            }
+        }
+        
+        async function loadSources() {
+            try {
+                const res = await fetch('/api/admin/sources');
+                const data = await res.json();
+                
+                const container = document.getElementById('sourcesBreakdown');
+                
+                if (!data.sources || data.sources.length === 0) {
+                    container.innerHTML = '<div class="no-data"><div class="no-data-icon">🔗</div>No traffic sources yet</div>';
+                    return;
+                }
+                
+                const maxCount = data.sources[0]?.count || 1;
+                container.innerHTML = data.sources.map(s => `
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">${escapeHtml(s.source === 'Direct' ? '🔗 Direct' : s.source)}</div>
+                        <div class="breakdown-bar-container">
+                            <div class="breakdown-bar" style="width: ${(s.count / maxCount) * 100}%"></div>
+                        </div>
+                        <div class="breakdown-value">${s.count.toLocaleString()}</div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading sources:', error);
+            }
+        }
+        
+        async function loadDevices() {
+            try {
+                const res = await fetch('/api/admin/devices');
+                const data = await res.json();
+                
+                // Devices
+                const devicesContainer = document.getElementById('devicesBreakdown');
+                if (!data.devices || data.devices.length === 0) {
+                    devicesContainer.innerHTML = '<div class="no-data">No data yet</div>';
+                } else {
+                    const maxDevices = data.devices[0]?.count || 1;
+                    devicesContainer.innerHTML = data.devices.map(d => `
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">${d.name === 'Desktop' ? '🖥️' : d.name === 'Mobile' ? '📱' : '📱'} ${d.name}</div>
+                            <div class="breakdown-bar-container">
+                                <div class="breakdown-bar" style="width: ${(d.count / maxDevices) * 100}%"></div>
+                            </div>
+                            <div class="breakdown-value">${d.count.toLocaleString()}</div>
+                        </div>
+                    `).join('');
+                }
+                
+                // Browsers
+                const browsersContainer = document.getElementById('browsersBreakdown');
+                if (!data.browsers || data.browsers.length === 0) {
+                    browsersContainer.innerHTML = '<div class="no-data">No data yet</div>';
+                } else {
+                    const maxBrowsers = data.browsers[0]?.count || 1;
+                    browsersContainer.innerHTML = data.browsers.map(b => `
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">${b.name}</div>
+                            <div class="breakdown-bar-container">
+                                <div class="breakdown-bar" style="width: ${(b.count / maxBrowsers) * 100}%"></div>
+                            </div>
+                            <div class="breakdown-value">${b.count.toLocaleString()}</div>
+                        </div>
+                    `).join('');
+                }
+                
+                // OS
+                const osContainer = document.getElementById('osBreakdown');
+                if (!data.operatingSystems || data.operatingSystems.length === 0) {
+                    osContainer.innerHTML = '<div class="no-data">No data yet</div>';
+                } else {
+                    const maxOS = data.operatingSystems[0]?.count || 1;
+                    osContainer.innerHTML = data.operatingSystems.map(o => `
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">${o.name}</div>
+                            <div class="breakdown-bar-container">
+                                <div class="breakdown-bar" style="width: ${(o.count / maxOS) * 100}%"></div>
+                            </div>
+                            <div class="breakdown-value">${o.count.toLocaleString()}</div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading devices:', error);
+            }
+        }
+        
+        async function loadActivity() {
+            try {
+                const res = await fetch('/api/admin/activity');
+                const data = await res.json();
+                
+                const tbody = document.querySelector('#activityTable tbody');
+                if (!data.recentViews || data.recentViews.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="no-data">No activity yet</td></tr>';
+                    return;
+                }
+                
+                tbody.innerHTML = data.recentViews.map(v => `
+                    <tr>
+                        <td>${formatDateTime(v.timestamp)}</td>
+                        <td><strong>${escapeHtml(v.page)}</strong></td>
+                        <td><span class="badge badge-primary">${v.device}</span></td>
+                        <td>${v.browser}</td>
+                        <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(v.referrer || 'Direct')}</td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading activity:', error);
+            }
+        }
+        
+        // ============ HELPERS ============
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function formatDateTime(dateStr) {
+            if (!dateStr) return '-';
+            return new Date(dateStr).toLocaleString();
+        }
+        
+        // ============ TABS ============
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab + 'Tab').classList.add('active');
+            });
+        });
+        
+        // ============ LOAD ALL ============
+        async function loadAllData() {
+            await Promise.all([
+                loadStats(),
+                loadDailyChart(),
+                loadPages(),
+                loadVisitors(),
+                loadSources(),
+                loadDevices(),
+                loadActivity()
+            ]);
+        }
+        
+        function refreshData() {
+            loadAllData();
+        }
+        
+        // ============ INIT ============
+        checkAuth();
+    </script>
+</body>
+</html>

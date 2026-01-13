@@ -17,6 +17,11 @@ function showPage(pageId, evt) {
 
     // Scroll to top
     window.scrollTo(0, 0);
+    
+    // Track page view for analytics
+    if (window.portfolioAnalytics && window.portfolioAnalytics.trackPageView) {
+        window.portfolioAnalytics.trackPageView();
+    }
 }
 
 // Helper to run initialization code whether DOMContentLoaded already fired or not
